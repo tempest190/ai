@@ -1,0 +1,17 @@
+
+import random
+cardfaces=[]
+suits=["hearts","diamonds","clubs","spades"]
+royals=["J","Q","K","A"]
+deck=[]
+for i in range(2,11):
+  cardfaces.append(str(i))
+for royal in royals:
+  cardfaces.append(royal)
+for suit in suits:
+  for face in cardfaces:
+    card = f"{face} of {suit}"
+    deck.append(card)
+random.shuffle(deck)
+for card in deck:
+  print(card)

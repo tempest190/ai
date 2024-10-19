@@ -1,0 +1,73 @@
+from collections import deque
+
+
+initial_state = {
+    'A': 'B',
+            'B': 'Table',
+                        'C': 'Table'
+                                    }
+
+goal_state = { 
+'A': 'Table',
+'B': 'Table',
+'C': 'B'
+}
+
+
+def is_goal_state(state, goal_state):
+    return state == goal_state
+
+
+def get_possible_actions(state):
+    actions = []
+    blocks = list(state.keys())
+
+    for block in blocks:
+        if state[block] == 'Table' or all(state[b] != block for b in blocks):
+            # Block is clear and can be moved
+            for target in ['Table'] + blocks:
+                if block != target and (target == 'Table' or state[target] == 'Table' or all(state[b] != target for b in blocks)):
+                    actions.append((block, state[block], target))
+
+    return actions
+
+
+def apply_action(state, action):
+    block, from_pos, to_pos = action
+    new_state = state.copy()
+    new_state[block] = to_pos
+    return new_state
+
+
+def bfs_block_world(initial_state, goal_state):
+    queue = deque([(initial_state, [])])
+    visited = set()
+
+    while queue:
+        current_state, path = queue.popleft()
+
+        if is_goal_state(current_state, goal_state):
+            return path
+
+        if tuple(current_state.items()) in visited:
+            continue
+
+        visited.add(tuple(current_state.items()))
+
+        for action in get_possible_actions(current_state):
+            new_state = apply_action(current_state, action)
+            queue.append((new_state, path + [action]))
+
+    return None
+
+
+solution = bfs_block_world(initial_state, goal_state)
+
+
+if solution:
+    print("Solution found:")
+    for step, action in enumerate(solution, 1):
+        block, from_pos, to_pos = action
+        print(f"Step {step}: Move {block} from {from_pos} to {to_pos}")
+else:
+    print("No solution found.")

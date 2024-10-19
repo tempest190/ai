@@ -1,0 +1,35 @@
+prac 1a    dfs
+
+prac 1b    bfs
+
+prac 2a   4 queens/nqueens
+
+prac 2b   tower of hanoi
+
+prac 3a   alpha beta search
+
+prac 3b   hill climbing problem
+
+prac 4a   astar algorithm
+
+prac 4b   water jub problem
+
+prac 5b  tic tac toe
+
+prac 6  number puzzle problem
+
+prac 7a shuffle cards
+
+prac 7b travel sales man
+
+prac 8a  block of world problem
+
+prac 8b  constraints satisfaction
+
+prac 9a associative law
+
+prac 9b distrubutive law
+
+prac 10a predicate sachin is batsman
+
+prac 10 b family tree      

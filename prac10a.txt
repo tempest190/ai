@@ -1,0 +1,26 @@
+
+relationships = {
+    "Sachin": "batsman",
+    "batsman": "cricketer"
+}
+
+
+def derive_relationship(entity, relationships):
+    
+    result = entity
+
+    
+    while result in relationships:
+        result = relationships[result]
+
+    return result
+
+
+entity = "Sachin"
+
+
+final_relationship = derive_relationship(entity, relationships)
+
+
+print(f"{entity} is a {final_relationship}")
+

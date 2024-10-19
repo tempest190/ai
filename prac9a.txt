@@ -1,0 +1,32 @@
+# Function to demonstrate Associative Law for Addition
+def associative_law_addition(a, b, c):
+    # (a + b) + c
+    left_side = (a + b) + c
+    # a + (b + c)
+    right_side = a + (b + c)
+    return left_side, right_side
+
+
+def associative_law_multiplication(a, b, c):
+    # (a * b) * c
+    left_side = (a * b) * c
+    # a * (b * c)
+    right_side = a * (b * c)
+    return left_side, right_side
+
+
+a = 2
+b = 3
+c = 4
+
+
+addition_left, addition_right = associative_law_addition(a, b, c)
+print(f"Associative Law of Addition: (a + b) + c = a + (b + c)")
+print(f"({a} + {b}) + {c} = {a} + ({b} + {c})")
+print(f"Result: {addition_left} = {addition_right}\n")
+
+
+multiplication_left, multiplication_right = associative_law_multiplication(a, b, c)
+print(f"Associative Law of Multiplication: (a * b) * c = a * (b * c)")
+print(f"({a} * {b}) * {c} = {a} * ({b} * {c})")
+print(f"Result: {multiplication_left} = {multiplication_right}")

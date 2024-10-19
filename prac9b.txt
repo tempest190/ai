@@ -1,0 +1,19 @@
+
+def distributive_law(a, b, c):
+    # a * (b + c)
+    left_side = a * (b + c)
+    # (a * b) + (a * c)
+    right_side = (a * b) + (a * c)
+    return left_side, right_side
+
+# Test values
+a = 2
+b = 3
+c = 4
+
+
+distributive_left, distributive_right = distributive_law(a, b, c)
+print(f"Distributive Law: a * (b + c) = (a * b) + (a * c)")
+print(f"{a} * ({b} + {c}) = ({a} * {b}) + ({a} * {c})")
+print(f"Result: {distributive_left} = {distributive_right}")
+

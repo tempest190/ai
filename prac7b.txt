@@ -1,0 +1,22 @@
+import itertools
+dist_matrix= [
+    [0,10,15,20],
+    [5,0,25,10],
+    [15,30,0,5],
+    [15,10,20,0]
+]
+n = len(dist_matrix)
+city_indices = list(range(1,n))
+all_permutations = itertools.permutations(city_indices)
+min_distance = float('inf')
+best_route = None
+for perm in all_permutations:
+  current_distance = 0
+  current_route = [0] + list(perm) + [0]
+  for i in range(len(current_route) - 1):
+    current_distance += dist_matrix[current_route[i]][current_route[i+1]]
+  if current_distance < min_distance:
+    min_distance = current_distance
+    best_route = current_route
+print(f"minimun distance: {min_distance}")
+print(f"best route: {best_route}")

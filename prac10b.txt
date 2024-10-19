@@ -1,0 +1,100 @@
+
+class FamilyTree:
+    def __init__(self):
+        self.male = set()
+        self.female = set()
+        self.parents = {}
+
+    def add_male(self, name):
+        self.male.add(name)
+
+    def add_female(self, name):
+        self.female.add(name)
+
+    def add_parent(self, parent, child):
+        if child not in self.parents:
+            self.parents[child] = []
+        self.parents[child].append(parent)
+
+    def is_male(self, name):
+        return name in self.male
+
+    def is_female(self, name):
+        return name in self.female
+
+    def father(self, child):
+        for parent in self.parents.get(child, []):
+            if self.is_male(parent):
+                return parent
+        return None
+
+    def mother(self, child):
+        for parent in self.parents.get(child, []):
+            if self.is_female(parent):
+                return parent
+        return None
+
+    def brother(self, person):
+        siblings = self.get_siblings(person)
+        return [s for s in siblings if self.is_male(s)]
+
+    def sister(self, person):
+        siblings = self.get_siblings(person)
+        return [s for s in siblings if self.is_female(s)]
+
+    def get_siblings(self, person):
+        for parent in self.parents.get(person, []):
+            siblings = [child for child in self.parents if parent in self.parents[child] and child != person]
+            return siblings
+        return []
+
+    def grandfather(self, person):
+        father = self.father(person)
+        if father:
+            return self.father(father)
+        mother = self.mother(person)
+        if mother:
+            return self.father(mother)
+        return None
+
+    def grandmother(self, person):
+        father = self.father(person)
+        if father:
+            return self.mother(father)
+        mother = self.mother(person)
+        if mother:
+            return self.mother(mother)
+        return None
+
+
+family = FamilyTree()
+
+
+family.add_male("john")
+family.add_male("mike")
+family.add_male("tom")
+family.add_male("jake")
+
+
+family.add_female("mary")
+family.add_female("lisa")
+family.add_female("susan")
+family.add_female("sara")
+
+
+family.add_parent("john", "mike")
+family.add_parent("mary", "mike")
+family.add_parent("john", "susan")
+family.add_parent("mary", "susan")
+family.add_parent("mike", "jake")
+family.add_parent("lisa", "jake")
+family.add_parent("susan", "sara")
+family.add_parent("tom", "sara")
+
+
+print("Father of Jake:", family.father("jake"))
+print("Mother of Jake:", family.mother("jake"))
+print("Brother of Jake:", family.brother("jake"))
+print("Sister of Sara:", family.sister("sara"))
+print("Grandfather of Jake:", family.grandfather("jake"))
+print("Grandmother of Sara:", family.grandmother("sara"))
