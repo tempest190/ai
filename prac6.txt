@@ -18,6 +18,15 @@ def find_location(rows, element_to_find):
             if element == element_to_find:
                 return ir, ic
 
+# Define the GOAL and INITIAL states for the Eight Puzzle problem
+GOAL = '''1-2-3
+4-5-6
+7-8-e'''
+
+INITIAL = '''1-e-2
+4-5-3
+7-8-6'''
+
 
 goal_positions = {}
 rows_goal = string_to_list(GOAL)
